@@ -8,6 +8,7 @@ import EventDetailedPage from "../../features/events/eventsDetailed/EventDetaile
 import EventForm from "../../features/events/eventForm/EventForm";
 import {Route, useLocation} from "react-router-dom";
 import Sandbox from "../../features/sandbox/Sandbox";
+import ModalManager from "../common/modals/ModelManager";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
     return (
         <>
+            <ModalManager />
             <Route exact path='/' component={HomePage}/>
             <Route path={'/(.+)'}
                    render={() => (

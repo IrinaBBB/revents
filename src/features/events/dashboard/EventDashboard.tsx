@@ -1,5 +1,6 @@
 import { Grid } from 'semantic-ui-react'
 import EventList from './EventList.tsx'
+import EventForm from '../form/EventForm.tsx'
 
 function EventDashboard() {
     return (
@@ -8,7 +9,7 @@ function EventDashboard() {
                 <EventList />
             </Grid.Column>
             <Grid.Column width={6}>
-                <h2>Right column</h2>
+                <EventForm />
             </Grid.Column>
         </Grid>
     )

@@ -1,8 +1,13 @@
 import { Button, Form, Header, Segment } from 'semantic-ui-react'
 import { useState } from 'react'
 
+
+type Props = {
+    setFormOpen: (value: boolean) => void
+}
+
 // @ts-ignore
-export function EventForm({ setFormOpen, setEvents, createEvent, selectedEvent, updateEvent }) {
+export function EventForm({ setFormOpen, setEvents, createEvent, selectedEvent, updateEvent }: Props) {
     const initialValues = selectedEvent ?? {
         title: '',
         category: '',
@@ -44,7 +49,7 @@ export function EventForm({ setFormOpen, setEvents, createEvent, selectedEvent, 
                     />
                 </Form.Field>
                 <Button type='submit' floated='right' positive content='Submit' />
-                <Button type='button' floated='right' content='Cancel' nClick={() => setFormOpen(false)} />
+                <Button type='button' floated='right' content='Cancel' onClick={() => setFormOpen(false)} />
             </Form>
         </Segment>
     )

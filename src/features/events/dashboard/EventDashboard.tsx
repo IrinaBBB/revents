@@ -31,11 +31,15 @@ function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }: P
         setFormOpen(false)
     }
 
+    function deleteEvent(eventId: string) {
+        setEvents(events.filter(event => event.id !== eventId))
+    }
+
 
     return (
         <Grid>
             <Grid.Column width={10}>
-                <EventList events={events} selectEvent={selectEvent} />
+                <EventList events={events} selectEvent={selectEvent} deleteEvent={deleteEvent} />
             </Grid.Column>
             <Grid.Column width={6}>
                 {formOpen && <EventForm updateEvent={updateEvent} key={selectedEvent ? selectedEvent.id : 'create'}

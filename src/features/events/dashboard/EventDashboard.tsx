@@ -16,7 +16,7 @@ function EventDashboard({ formOpen, setFormOpen }: Props) {
     useEffect(() => {
         setEvents(sampleData)
     }, [])
-    
+
     return (
         <Grid>
             <Grid.Column width={10}>

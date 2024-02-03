@@ -8,9 +8,10 @@ type Props = {
     setFormOpen: (value: boolean) => void
     addEvent: (value: AppEvent) => void
     selectedEvent: AppEvent | null
+    updateEvent: (event: AppEvent) => void
 }
 
-export function EventForm({ setFormOpen, addEvent, selectedEvent }: Props) {
+export function EventForm({ setFormOpen, addEvent, selectedEvent, updateEvent }: Props) {
     const initialValues = selectedEvent ?? {
         title: '',
         category: '',
@@ -22,7 +23,8 @@ export function EventForm({ setFormOpen, addEvent, selectedEvent }: Props) {
     const [values, setValues] = useState(initialValues)
 
     function onSubmit() {
-        addEvent({ ...values, id: createId(), hostedBy: 'bob', attendees: [], hostPhotoURL: '' })
+        selectedEvent ? updateEvent({ ...selectedEvent, ...values }) :
+            addEvent({ ...values, id: createId(), hostedBy: 'bob', attendees: [], hostPhotoURL: '' })
         setFormOpen(false)
     }
 
@@ -33,7 +35,7 @@ export function EventForm({ setFormOpen, addEvent, selectedEvent }: Props) {
 
     return (
         <Segment clearing>
-            <Header content={'Create new event'} />
+            <Header content={selectedEvent ? 'Update event' : 'Create new event'} />
             <Form onSubmit={onSubmit}>
                 <Form.Field>
                     <input type='text' placeholder='Event Title' name='title' value={values.title}

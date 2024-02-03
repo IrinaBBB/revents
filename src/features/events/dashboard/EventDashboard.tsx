@@ -8,7 +8,7 @@ import { sampleData } from '../../../app/api/sampleData.ts'
 type Props = {
     formOpen: boolean
     setFormOpen: (value: boolean) => void
-    selectEvent: (event: AppEvent) => void
+    selectEvent: (event: AppEvent | null) => void
     selectedEvent: AppEvent | null
 }
 
@@ -25,6 +25,11 @@ function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }: P
         })
     }
 
+    function updateEvent(updatedEvent: AppEvent) {
+        setEvents(events.map(event => event.id === updatedEvent.id ? updatedEvent : event))
+        selectEvent(null)
+        setFormOpen(false)
+    }
 
 
     return (
@@ -33,7 +38,9 @@ function EventDashboard({ formOpen, setFormOpen, selectEvent, selectedEvent }: P
                 <EventList events={events} selectEvent={selectEvent} />
             </Grid.Column>
             <Grid.Column width={6}>
-                {formOpen && <EventForm key={selectedEvent ? selectedEvent.id : 'create'} selectedEvent={selectedEvent} setFormOpen={setFormOpen} addEvent={addEvent} />}
+                {formOpen && <EventForm updateEvent={updateEvent} key={selectedEvent ? selectedEvent.id : 'create'}
+                                        selectedEvent={selectedEvent}
+                                        setFormOpen={setFormOpen} addEvent={addEvent} />}
             </Grid.Column>
         </Grid>
     )

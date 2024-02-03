@@ -1,9 +1,14 @@
 import EventListItem from './EventListItem.tsx'
+import { AppEvent } from '../../../app/types/Events.ts'
 
-function EventList(props: any) {
+type Props = {
+    events: AppEvent[]
+}
+
+function EventList({ events }: Props) {
     return (
         <>
-            {props.events.map(event => (
+            {events.map(event => (
                 <EventListItem event={event} key={event.id} />
             ))}
         </>

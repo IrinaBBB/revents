@@ -1,12 +1,11 @@
 import EventListItem from './EventListItem.tsx'
 
-function EventList() {
+function EventList(props: any) {
     return (
         <>
-            <EventListItem />
-            <EventListItem />
-            <EventListItem />
-            <EventListItem />
+            {props.events.map(event => (
+                <EventListItem event={event} key={event.id} />
+            ))}
         </>
     )
 }

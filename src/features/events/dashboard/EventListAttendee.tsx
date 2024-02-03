@@ -1,9 +1,9 @@
 import { Image, ListItem } from 'semantic-ui-react'
 
-function EventListAttendee() {
+function EventListAttendee({ attendee }: any) {
     return (
         <ListItem>
-            <Image size='mini' circular src='/user.png' />
+            <Image size='mini' circular src={attendee.photoURL} />
         </ListItem>
     )
 }

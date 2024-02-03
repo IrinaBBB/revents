@@ -4,10 +4,11 @@ import { AppEvent } from '../../../app/types/Events.ts'
 
 
 type Props = {
-    event: AppEvent
+    event: AppEvent,
+    selectEvent: (event: AppEvent) => void
 }
 
-function EventListItem({ event }: Props) {
+function EventListItem({ event, selectEvent }: Props) {
     return (
         <Segment.Group>
             <Segment>
@@ -34,7 +35,7 @@ function EventListItem({ event }: Props) {
             </Segment>
             <Segment clearing>
                 <div>{event.description}</div>
-                <Button color='teal' floated='right' content='View' />
+                <Button color='teal' floated='right' content='View' onClick={() => selectEvent(event)} />
                 <Button color='red' floated='right' content='Delete' />
             </Segment>
         </Segment.Group>

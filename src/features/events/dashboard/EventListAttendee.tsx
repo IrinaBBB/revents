@@ -1,5 +1,5 @@
 import { Image, ListItem } from 'semantic-ui-react'
-import { Attendee } from '../../../app/types/Events.ts'
+import { Attendee } from '../../../app/types/event.ts'
 
 type Props = {
     attendee: Attendee

@@ -1,46 +1,46 @@
-import { Button, Icon, Item, ItemGroup, List, Segment } from 'semantic-ui-react'
-import EventListAttendee from './EventListAttendee.tsx'
-import { AppEvent } from '../../../app/types/Events.ts'
-
+import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from 'semantic-ui-react';
+import EventListAttendee from './EventListAttendee';
+import { AppEvent } from '../../../app/types/event';
+import { Link } from 'react-router-dom';
 
 type Props = {
-    event: AppEvent,
-    selectEvent: (event: AppEvent) => void
-    deleteEvent: (eventId: string) => void
+    event: AppEvent
 }
 
-function EventListItem({ event, selectEvent, deleteEvent }: Props) {
+export default function EventListItem({ event }: Props) {
     return (
-        <Segment.Group>
+        <SegmentGroup>
             <Segment>
                 <ItemGroup>
                     <Item>
                         <Item.Image size='tiny' circular src={event.hostPhotoURL || '/user.png'} />
                         <Item.Content>
-                            <Item.Header content={event.title} />
-                            <Item.Description>{event.hostedBy}</Item.Description>
+                            <Item.Header>{event.title}</Item.Header>
+                            <Item.Description>
+                                Hosted by {event.hostedBy}
+                            </Item.Description>
                         </Item.Content>
                     </Item>
                 </ItemGroup>
             </Segment>
             <Segment>
-                <span><Icon name='clock' />{event.date}</span>
-                <span><Icon name='marker' />{event.venue}</span>
+        <span>
+          <Icon name='clock' /> {event.date}
+            <Icon name='marker' /> {event.venue}
+        </span>
             </Segment>
             <Segment secondary>
                 <List horizontal>
-                    {event.attendees.map(attendee => (
-                        <EventListAttendee attendee={attendee} key={attendee.id} />
+                    {event.attendees.map((attendee: any) => (
+                        <EventListAttendee key={attendee.id} attendee={attendee} />
                     ))}
                 </List>
             </Segment>
             <Segment clearing>
-                <div>{event.description}</div>
-                <Button color='teal' floated='right' content='View' onClick={() => selectEvent(event)} />
-                <Button color='red' floated='right' content='Delete' onClick={() => deleteEvent(event.id)} />
+                <span>{event.description}</span>
+                <Button color='red' floated='right' content='Delete' />
+                <Button as={Link} to={`/events/${event.id}`} color='teal' floated='right' content='View' />
             </Segment>
-        </Segment.Group>
+        </SegmentGroup>
     )
 }
-
-export default EventListItem

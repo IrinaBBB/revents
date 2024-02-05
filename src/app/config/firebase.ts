@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import 'firebase/firesore'
+import 'firebase/firestore'
 import { getFirestore } from 'firebase/firestore'
 
 
